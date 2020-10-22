@@ -1,30 +1,31 @@
 {
-  "name": "ar-product-viewer",
-  "version": "1.0.0",
-  "description": "A product viewer in augmented reality for browsers",
+  "name": "node-js-getting-started",
+  "version": "0.3.0",
+  "description": "A sample Node.js app using Express 4",
+  "engines": {
+    "node": "12.x"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "got": "^11.3.0",
+    "tape": "^4.7.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pfirmino/ar-product-viewer.git"
+    "url": "https://github.com/heroku/node-js-getting-started"
   },
   "keywords": [
-    "AR",
-    "WebXR",
-    "Augmented",
-    "Reality",
-    "Product",
-    "Viewer",
-    "POS",
-    "Retail"
+    "node",
+    "heroku",
+    "express"
   ],
-  "author": "pfirmino",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pfirmino/ar-product-viewer/issues"
-  },
-  "homepage": "https://github.com/pfirmino/ar-product-viewer#readme"
+  "license": "MIT"
 }

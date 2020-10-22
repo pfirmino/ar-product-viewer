@@ -1,18 +1,10 @@
-const https = require('https');
-const fs = require('fs');
-const hostname = 'localhost';
-const port = 8080;
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
 
-const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-};
-
-const server = https.createServer(options, (req, res) => {
-  res.writeHead(200);
-  res.end("hello world\n");
-});
-
-server.listen(port, hostname, () => {
-    console.log(`Server running at https://${hostname}:${port}/`);
-});
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
