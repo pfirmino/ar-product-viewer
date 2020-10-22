@@ -38,8 +38,8 @@
   let scene = new Scene();
   let gltfExtScene = new Gltf2Node({url: '/media/gltf/fold2/fold_2.gltf'});
   // import the gltf file assets
-  gltfExtScene.scale = [.2, .2, .2];
-  //gltfExtScene.translation = [0, -.01, -0.03];
+  gltfExtScene.scale = [.5, .5, .5];
+  gltfExtScene.translation = [0, 0, -0.1];
   console.log(gltfExtScene.translation);
 
   scene.addNode(gltfExtScene);
@@ -116,7 +116,7 @@
 
     initGL();
 
-    session.updateRenderState({ baseLayer: new XRWebGLLayer(session, gl), depthNear: 0.01 });
+    session.updateRenderState({ baseLayer: new XRWebGLLayer(session, gl), depthNear: 0.01, depthFar: 10000 });
     
     let refSpaceType = session.isImmersive ? 'local' : 'viewer';
     session.requestReferenceSpace(refSpaceType).then((refSpace) => {
