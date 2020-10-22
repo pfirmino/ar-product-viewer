@@ -1,0 +1,30 @@
+{
+  "name": "ar-product-viewer",
+  "version": "1.0.0",
+  "description": "A product viewer in augmented reality for browsers",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfirmino/ar-product-viewer.git"
+  },
+  "keywords": [
+    "AR",
+    "WebXR",
+    "Augmented",
+    "Reality",
+    "Product",
+    "Viewer",
+    "POS",
+    "Retail"
+  ],
+  "author": "pfirmino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pfirmino/ar-product-viewer/issues"
+  },
+  "homepage": "https://github.com/pfirmino/ar-product-viewer#readme"
+}
