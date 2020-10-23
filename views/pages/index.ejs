@@ -53,7 +53,7 @@
 					session.addEventListener('select', function () {
 						let position = element.getAttribute('position');
 
-						document.getElementById('fold2').setAttribute('position', position);
+						//document.getElementById('fold2').setAttribute('position', position);
 						/*document.getElementById('light').setAttribute('position', {
 							x: (position.x - 2),
 							y: (position.y + 4),
@@ -72,7 +72,7 @@
 					session.requestReferenceSpace('local-floor').then((space) => {
 						this.refSpace = space;
 					});
-					document.getElementById('text').setAttribute('text', "align: center; value: " + this.refSpace + ";");
+					document.getElementById('text').setAttribute('text', "align: center; value: " + element + ";");
 				});
 			},
 			tick: function () {
