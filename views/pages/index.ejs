@@ -53,7 +53,7 @@
 					session.addEventListener('select', function () {
 						let position = element.getAttribute('position');
 
-						//document.getElementById('fold2').setAttribute('position', position);
+						document.getElementById('fold2').setAttribute('position', position);
 						/*document.getElementById('light').setAttribute('position', {
 							x: (position.x - 2),
 							y: (position.y + 4),
@@ -79,8 +79,6 @@
 				if (this.el.sceneEl.is('ar-mode')) {
 					if (!this.viewerSpace) return;
 
-					document.getElementById('text').setAttribute('text', "align: center; value: " + "AR-Mode" + ";");
-
 					let frame = this.el.sceneEl.frame;
 					let xrViewerPose = frame.getViewerPose(this.refSpace);
 
@@ -95,6 +93,8 @@
 							let position = new THREE.Vector3();
 							position.setFromMatrixPosition(inputMat);
 							this.el.setAttribute('position', position);
+
+							document.getElementById('text').setAttribute('text', "align: center; value: " + position + ";");
 						}
 					}
 				}
