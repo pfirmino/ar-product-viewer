@@ -72,6 +72,7 @@
 					session.requestReferenceSpace('local-floor').then((space) => {
 						this.refSpace = space;
 					});
+					document.getElementById('text').setAttribute('text', "align: center; value: " + this.refSpace + ";");
 				});
 			},
 			tick: function () {
@@ -92,7 +93,7 @@
 							let position = new THREE.Vector3();
 							position.setFromMatrixPosition(inputMat);
 							this.el.setAttribute('position', position);
-							document.getElementById('text').setAttribute('text', "align: center; value: " + position + ";");
+							//document.getElementById('text').setAttribute('text', "align: center; value: " + position + ";");
 						}
 					}
 				}
