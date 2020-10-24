@@ -44,6 +44,8 @@
 				});
 				this.el.sceneEl.addEventListener('exit-vr', (ev) => {
 					if (this.wasVisible) this.el.setAttribute('visible', true);
+					document.querySelector('a-entity[reticle]').setAttribute("visible", false);
+					document.querySelector('#product').setAttribute("position", {x: 0, y: 0, z: 0});
 				});
 			}
 		});
@@ -113,11 +115,7 @@
 </head>
 
 <body>
-	<a-scene renderer="antialias: true;
-		colorManagement: true;
-		sortObjects: true;
-		physicallyCorrectLights: true;" 
-		webxr="requiredFeatures: hit-test,local-floor;">
+	<a-scene webxr="requiredFeatures: hit-test,local-floor;">
 		<a-assets>
 			<a-asset-item id="fold2" src="/media/gltf/fold2/fold_2.gltf" response-type="arraybuffer">
 			</a-asset-item>
@@ -156,6 +154,8 @@
 		document.getElementById('btn_full').onclick = setSize.bind(this, 1);
 		document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
 		document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.0625);
+
+		document.querySelector('a-entity[reticle]').setAttribute("visible", false);
 	</script>
 </body>
 
