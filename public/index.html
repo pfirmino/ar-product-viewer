@@ -133,15 +133,9 @@
 		<h1>A-Frame AR Product Viewer</h1>
 
 		<p>
-			1. Entre no modo Realidade Aumentada através do botão 'AR' no canto inferior direito.
-			2. Aponte a camera para uma superfície como uma mesa e espere aparecer um círculo azul.
+			1. Entre no modo Realidade Aumentada através do botão 'AR' no canto inferior direito.<br>
+			2. Aponte a camera para uma superfície como uma mesa e espere aparecer um círculo azul.<br>
 			3. Toque no círculo para posicionar o produto.
-		</p>
-		<p>
-			Size:
-			<button id="btn_full">Full</button>
-			<button id="btn_half">1/2</button>
-			<button id="btn_quarter">1/16</button>
 		</p>
 
 		<p>
@@ -149,14 +143,6 @@
 		</p>
 	</div>
 	<script>
-		function setSize(scale) {
-			document.getElementById('product').setAttribute('scale', { x: scale, y: scale, z: scale });
-		}
-
-		document.getElementById('btn_full').onclick = setSize.bind(this, 1);
-		document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
-		document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.0625);
-
 		document.querySelector('a-entity[reticle]').setAttribute("visible", false);
 	</script>
 </body>
