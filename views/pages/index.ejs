@@ -19,6 +19,7 @@
 	</script>
 	<script src="/aframe/aframe.min.js"></script>
 	<script src="/aframe-extras/aframe-extras.min.js"></script>
+	<!-- <script src="/aframe-ar/aframe-ar.min.js"></script> -->
 	<script>
 		AFRAME.registerComponent('hide-in-ar-mode', {
 			// Set this object invisible while in AR mode.
@@ -53,12 +54,12 @@
 					session.addEventListener('select', function () {
 						let position = element.getAttribute('position');
 
-						document.getElementById('product').setAttribute('position', position);
-						/*document.getElementById('light').setAttribute('position', {
+						document.getElementById('dino').setAttribute('position', position);
+						document.getElementById('light').setAttribute('position', {
 							x: (position.x - 2),
 							y: (position.y + 4),
 							z: (position.z + 2)
-						});*/
+						});
 					});
 
 					session.requestReferenceSpace('viewer').then((space) => {
@@ -85,11 +86,6 @@
 						let hitTestResults = frame.getHitTestResults(this.xrHitTestSource);
 						if (hitTestResults.length > 0) {
 							let pose = hitTestResults[0].getPose(this.refSpace);
-							
-							var text = document.querySelector('#text');
-
-							if(text)
-								text.setAttribute('text', 'align: center; value: '+ pose.transform.matrix +';');
 
 							let inputMat = new THREE.Matrix4();
 							inputMat.fromArray(pose.transform.matrix);
@@ -113,11 +109,14 @@
 			<img id="sky" src="/media/textures/milky-way-4k.png">
 		</a-assets>
 		<a-entity camera look-controls position="0 .1 .3"></a-entity>
-		<a-entity id="product" gltf-model="#fold2" animation-mixer>
-			<a-entity id="text"  scale="0.5 0.5 0.5" position="0 .1 .1" text="align: center; value: Hello World;"></a-entity>
-		</a-entity>
+		<a-entity id="product" gltf-model="#fold2" animation-mixer></a-entity>
 		<a-sky src="#sky" hide-in-ar-mode></a-sky>
-		<a-entity reticle geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.05" material="color: #000077" ar-hit-test></a-entity>
+		<a-entity reticle 
+			rotation="-90 0 0" 
+			geometry="primitive: ring; radiusInner: 0.09; radiusOuter: 0.1" 
+			material="color: #0088FF" 
+			ar-hit-test>
+		</a-entity>
 	</a-scene>
 </body>
 

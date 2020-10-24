@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "aframe": "^1.0.4",
+    "aframe-ar": "^0.2.1-a",
     "aframe-extras": "^6.1.1",
     "ejs": "^2.5.6",
     "express": "^4.15.2"
