@@ -35,9 +35,17 @@
 			}
 		});
 
-		AFRAME.registerComponent('object-3d', {
-			init: function (){
-				console.log(this.el.object3D.position);
+		AFRAME.registerComponent('camera-ar-mode', {
+			init: function () {
+				this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+					this.lastPosition = this.el.getAttribute('position');
+					if (this.el.sceneEl.is('ar-mode')) {
+						this.el.setAttributesetAttribute('position', { x: 0, y: 0, z: 0});
+					}
+				});
+				this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+					this.el.setAttribute('position', this.lastPosition);
+				});
 			}
 		});
 
@@ -60,11 +68,6 @@
 						let position = element.getAttribute('position');
 
 						document.getElementById('fold2').setAttribute('position', position);
-						/*document.getElementById('light').setAttribute('position', {
-							x: (position.x - 2),
-							y: (position.y + 4),
-							z: (position.z + 2)
-						});*/
 					});
 
 					session.requestReferenceSpace('viewer').then((space) => {
@@ -93,8 +96,6 @@
 							let pose = hitTestResults[0].getPose(this.refSpace);
 
 							this.el.object3D.matrix = pose.transform.matrix;
-
-							document.getElementById('text').setAttribute('text', "align: center; value: " + this.el.object3D.position + ";");
 						}
 					}
 				}
@@ -111,18 +112,13 @@
 			</a-asset-item>
 			<img id="sky" src="/media/textures/milky-way-4k.png">
 		</a-assets>
-		<a-entity id="text"  scale="0.5 0.5 0.5" text="align: center; value: Hello World;"></a-entity>
-		<a-entity gltf-model="#fold2" animation-mixer></a-entity>
-		<a-sky src="#sky" hide-in-ar-mode></a-sky>
-		<a-entity id="reticle" object-3d ar-hit-test>
-			<a-entity geometry="primitive: plane; height: .3; width: .3" rotation="-90 0 0" material="color: red; side: single"></a-entity>
+		<a-entity gltf-model="#fold2" animation-mixer>
+			<a-entity id="text"  scale="0.5 0.5 0.5" position="0 .1 .1" text="align: center; value: Hello World;"></a-entity>
 		</a-entity>
-		<a-entity id="cam" camera look-controls position="0 .1 .3"></a-entity>
+		<a-sky src="#sky" hide-in-ar-mode></a-sky>
+		<a-entity id="reticle" geometry="primitive: box; width: .2; height: .01; depth: .2" material="color: red" ar-hit-test></a-entity>
+		<a-entity id="cam" camera look-controls position="0 .1 .3" camera-ar-mode></a-entity>
 	</a-scene>
-	<script>
-		var el = document.querySelector('a-entity[camera]');
-		console.log(el);
-	</script>
 </body>
 
 </html>
