@@ -35,6 +35,12 @@
 			}
 		});
 
+		AFRAME.registerComponent('object-3d', {
+			init: function (){
+				console.log(this.el.object3D.position);
+			}
+		});
+
 		AFRAME.registerComponent('ar-hit-test', {
 			init: function () {
 				this.xrHitTestSource = null;
@@ -72,7 +78,6 @@
 					session.requestReferenceSpace('local-floor').then((space) => {
 						this.refSpace = space;
 					});
-					document.getElementById('text').setAttribute('text', "align: center; value: " + element.getAttribute("id") + ";");
 				});
 			},
 			tick: function () {
@@ -87,14 +92,9 @@
 						if (hitTestResults.length > 0) {
 							let pose = hitTestResults[0].getPose(this.refSpace);
 
-							let inputMat = new THREE.Matrix4();
-							inputMat.fromArray(pose.transform.matrix);
+							this.el.object3D.matrix = pose.transform.matrix;
 
-							let position = new THREE.Vector3();
-							position.setFromMatrixPosition(inputMat);
-							this.el.setAttribute('position', position);
-
-							document.getElementById('text').setAttribute('text', "align: center; value: " + position + ";");
+							document.getElementById('text').setAttribute('text', "align: center; value: " + this.el.object3D.position + ";");
 						}
 					}
 				}
@@ -114,7 +114,7 @@
 		<a-entity id="text" position="0 1.6 -.3" scale="0.5 0.5 0.5" text="align: center; value: Hello World;"></a-entity>
 		<a-entity gltf-model="#fold2" position="0 1.5 -.35" animation-mixer></a-entity>
 		<a-sky src="#sky" hide-in-ar-mode></a-sky>
-		<a-ring id="reticle" color="teal" radius-inner=".1" radius-outer=".11" rotation="-90 0 0" position="0 1.5 -.35" ar-hit-test></a-ring>
+		<a-ring id="reticle" color="teal" radius-inner=".1" radius-outer=".11" rotation="-90 0 0" position="0 1.5 -.35" object-3d ar-hit-test></a-ring>
 	</a-scene>
 </body>
 
